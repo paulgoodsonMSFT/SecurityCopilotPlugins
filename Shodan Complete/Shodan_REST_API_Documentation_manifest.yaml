@@ -1,0 +1,19 @@
+Descriptor:
+  Name: Shodan_REST_API_Documentation
+  DisplayName: Shodan REST API Documentation
+  Description: "To use the API you need to have an API key, which you can get for\
+    \ free by creating a Shodan account.  \n  \n[CREATE A SHODAN ACCOUNT](https://account.shodan.io/register)\n\
+    \nThis documentation covers the raw APIs that are provided by Shodan, you should\
+    \ only have to use this if no library is available in your language that wraps\
+    \ the Shodan API in a developer-friendly way."
+  SupportedAuthTypes:
+  - ApiKey
+  Authorization:
+    Type: ApiKey
+    Key: key
+    Location: QueryParams
+    AuthScheme: ''
+SkillGroups:
+- Format: API
+  Settings:
+    OpenApiSpecUrl: https://gist.githubusercontent.com/paulgoodsonMSFT/76d422d40547269c7a1560552f8ab7b2/raw/9d909d0b793771fe518ad2948355c915e53b0b2f/Shodan_REST_API_Documentation_openapi_spec.yaml

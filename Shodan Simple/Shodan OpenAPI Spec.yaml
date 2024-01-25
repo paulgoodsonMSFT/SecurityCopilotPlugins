@@ -1,0 +1,48 @@
+openapi: 3.0.0
+
+info:
+  title: Shodan REST API Documentation
+  version: "1.0.0"
+
+servers:
+  - url: https://api.shodan.io
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: key
+
+tags:
+  - name: Search Methods
+    description: Endpoints related to searching on Shodan
+
+paths:
+  /shodan/host/{ip}:
+    get:
+      tags:
+        - Search Methods
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: query
+          name: history
+          schema:
+            type: boolean
+        - in: query
+          name: minify
+          schema:
+            type: boolean
+        - in: path
+          name: ip
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error

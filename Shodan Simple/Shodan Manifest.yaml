@@ -1,0 +1,16 @@
+Descriptor:
+  Name: Shodan Scanner
+  DisplayName: Shodan Scanner
+  Description: Interact with Shodan to scan IPs, search for hosts, and more.
+  SupportedAuthTypes:
+    - ApiKey
+  Authorization:
+    Type: APIKey
+    Key: key
+    Location: QueryParams
+    AuthScheme: ''
+
+SkillGroups:
+  - Format: API
+    Settings:
+      OpenApiSpecUrl: https://gist.githubusercontent.com/paulgoodsonMSFT/97a2e8044a31fdc61e9070bed1fae9a9/raw/bc3041307f55971e8433e9a9e3129e574c0d3332/ShodanPluginSpec.yaml
