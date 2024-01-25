@@ -1,0 +1,17 @@
+
+Descriptor:
+  Name: Malicious URL Scanner
+  DisplayName: Malicious URL Scanner
+  Description: Scan URLs in real-time to detect malicious sites, scam sites, phishing, malware, and low reputation domains.
+  SupportedAuthTypes:
+    - ApiKey
+  Authorization:
+    Type: APIKey
+    Key: IPQS-KEY
+    Location: Header
+    AuthScheme: ''
+
+SkillGroups:
+  - Format: API
+    Settings:
+      OpenApiSpecUrl: https://gist.githubusercontent.com/paulgoodsonMSFT/e5d0b3b7db9f2a64c7e4fd1f028fbb17/raw/412abbf413ca421ed7647ab1470592253d816464/URLScanner.yaml
