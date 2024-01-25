@@ -1,0 +1,145 @@
+Descriptor:
+  Name: CIRCL Hash Lookup
+  DisplayName: CIRCL Hash Lookup
+  Description: Skills for looking up information about a specific hash using the CIRCL Hash Lookup API.
+
+SkillGroups:
+  - Format: API
+    Settings:
+      OpenApiSpecUrl: https://gist.githubusercontent.com/paulgoodsonMSFT/8a1a4fc9fc03c579efccaf7acad4fb1e/raw/72fea8d2b37757a0b073f2066cd7bc2c0cd4d17a/CIRCL.yaml
+
+info:
+    title: CIRCL Hash Lookup
+    description: Lookup information about a specific hash
+    version: "v1"
+
+servers:
+    - url: https://hashlookup.circl.lu
+
+paths:
+  /lookup/md5/{hash}:
+    get:
+      operationId: lookupMD5Hash
+      summary: Lookup information about a specific MD5 hash
+      parameters:
+        - in: path
+          name: hash
+          schema:
+            type: string
+          required: true
+          description: The MD5 hash to lookup
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Incorrect hash format
+        "404":
+          description: Hash not found
+
+  /lookup/sha1/{hash}:
+    get:
+      operationId: lookupSHA1Hash
+      summary: Lookup information about a specific SHA-1 hash
+      parameters:
+        - in: path
+          name: hash
+          schema:
+            type: string
+          required: true
+          description: The SHA-1 hash to lookup
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Incorrect hash format
+        "404":
+          description: Hash not found
+
+  /lookup/sha256/{hash}:
+    get:
+      operationId: lookupSHA256Hash
+      summary: Lookup information about a specific SHA-256 hash
+      parameters:
+        - in: path
+          name: hash
+          schema:
+            type: string
+          required: true
+          description: The SHA-256 hash to lookup
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Incorrect hash format
+        "404":
+          description: Hash not found
+
+  /bulk/md5:
+    post:
+      operationId: bulkMD5Lookup
+      summary: Bulk search of MD5 hashes
+      requestBody:
+        required: true
+        description: A JSON object containing an array of MD5 hashes to be looked up
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hashes:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: OK
+
+  /bulk/sha1:
+    post:
+      operationId: bulkSHA1Lookup
+      summary: Bulk search of SHA-1 hashes
+      requestBody:
+        required: true
+        description: A JSON object containing an array of SHA-1 hashes to be looked up
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hashes:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: OK
+
+components:
+  schemas:
+    lookupHashResponse:
+      type: object
+      properties:
+        CRC32:
+          type: string
+          description: CRC32 checksum
+        FileName:
+          type: string
+          description: File name
+        FileSize:
+          type: string
+          description: File size
+        MD5:
+          type: string
+          description: MD5 hash
+        SHA-1:
+          type: string
+          description: SHA-1 hash
+        db:
+          type: string
+          description: Database source
+        insert-timestamp:
+          type: string
+          description: Timestamp when the hash was inserted in the database
+        source:
+          type: string
+          description: Source of the hash information
